@@ -7,6 +7,7 @@ export default class RSApp extends Component {
     this.state = {
       posts: []
     };
+    
   }
   componentDidMount() {
     const url = "http://jsonplaceholder.typicode.com/posts";
@@ -17,7 +18,9 @@ export default class RSApp extends Component {
       });
   }
 
+
   render() {
+
     return (
       <div className="container">
         <Link to="/addProjectTask" className="btn btn-primary mb-3">
