@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import {addactions} from "./Action";
+import classnames from "classnames";
+import axios from "axios";
 class AddProjectTask extends Component{
   constructor(){
     super();
@@ -22,6 +26,7 @@ class AddProjectTask extends Component{
       status:this.state.status
     }
     console.log(newprojectTask);
+    axios.post("http://localhost:8080/api/board",newprojectTask);
   }
     render(){
       return(
