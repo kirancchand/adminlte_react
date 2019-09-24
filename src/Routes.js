@@ -6,6 +6,8 @@ import Login from "./Cover/Login";
 import Home from "./Home/Home";
 // import Data from "./Home/pages/Data";
 import Datachart from "./Home/pages/Datachart";
+import AddProjectTask from "./Home/pages/ProjectTask/AddProjectTask";
+import RSApp from "./Home/pages/RSApp";
 export default class Routes extends Component {
   render() {
     return (
@@ -15,6 +17,8 @@ export default class Routes extends Component {
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
           <Route path="/home" exact component={Home} />
+          <Route path="/addProjectTask" exact component={AddProjectTask} />
+          <Route path="/rsapp" exact component={RSApp} />
           {/* <Route path="/data" exact component={Data} /> */}
           {/* <Route path="/datachart" exact component={Datachart} /> */}
           {/* <Route path="/" component={Contents} /> */}

@@ -1,24 +1,48 @@
 import React, { Component } from "react";
 class AddProjectTask extends Component{
+  constructor(){
+    super();
+    this.state={
+      summary:"",
+      acceptanceCriteria:"",
+      status:""
+    };
+    this.onChange=this.onChange.bind(this);
+    this.onSubmit=this.onSubmit.bind(this);
+  }
+  onChange(e){
+    this.setState({[e.target.name]:e.target.value})
+  }
+
+  onSubmit(e){
+    e.preventDefault();
+    const newprojectTask={
+      summary:this.state.summary,
+      acceptanceCriteria:this.state.acceptanceCriteria,
+      status:this.state.status
+    }
+    console.log(newprojectTask);
+  }
     render(){
+      return(
 <div>
   <div className="addProjectTask">
     <div className="container">
       <div className="row">
         <div className="col-md-8 m-auto">
-          <a href="/ProjectBoard.html" className="btn btn-light">
+          <a href="/RSApp" className="btn btn-light">
             Back to Board
           </a>
           <h4 className="display-4 text-center">Add /Update Project Task</h4>
-          <form>
+          <form onSubmit={this.onSubmit}>
             <div className="form-group">
-              <input type="text" className="form-control form-control-lg" name="summary" placeholder="Project Task summary" />
+              <input type="text" className="form-control form-control-lg" name="summary" placeholder="Project Task summary" value={this.state.summary} onChange={this.onChange}/>
             </div>
             <div className="form-group">
-              <textarea className="form-control form-control-lg" placeholder="Acceptance Criteria" name="acceptanceCriteria" defaultValue={""} />
+              <textarea className="form-control form-control-lg" placeholder="Acceptance Criteria" name="acceptanceCriteria" value={this.state.acceptanceCriteria} onChange={this.onChange} />
             </div>
             <div className="form-group">
-              <select className="form-control form-control-lg" name="status">
+              <select className="form-control form-control-lg" name="status" value={this.state.status} onChange={this.onChange} >
                 <option value>Select Status</option>
                 <option value="TO_DO">TO DO</option>
                 <option value="IN_PROGRESS">IN PROGRESS</option>
@@ -32,6 +56,8 @@ class AddProjectTask extends Component{
     </div>
   </div>
 </div>
+      )
+
 
     }
 }

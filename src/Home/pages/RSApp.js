@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import ProjectTaskItem from "./ProjectTask/ProjectTaskItem";
+// import "./mystyle.css";
+
+// /home/kiran/Desktop/work/react/adminlte_react/public/dist/css
 export default class RSApp extends Component {
   constructor(props) {
     super(props);
@@ -39,20 +42,7 @@ export default class RSApp extends Component {
               {
                 // <!-- SAMPLE PROJECT TASK STARTS HERE -->
               }{" "}
-              <div className="card mb-1 bg-light">
-                <div className="card-header text-primary">
-                  ID: projectSequence
-                </div>
-                <div className="card-body bg-light">
-                  <h5 className="card-title">summary</h5>
-                  <p className="card-text text-truncate ">acceptanceCriteria</p>
-                  <a href="" className="btn btn-primary">
-                    View / Update
-                  </a>
-
-                  <button className="btn btn-danger ml-4">Delete</button>
-                </div>
-              </div>
+         <ProjectTaskItem/>
               {
                 // <!-- SAMPLE PROJECT TASK ENDS HERE -->
               }{" "}
@@ -67,6 +57,7 @@ export default class RSApp extends Component {
                 //     <!-- SAMPLE PROJECT TASK STARTS HERE -->
                 // <!-- SAMPLE PROJECT TASK ENDS HERE -->
               }
+               <ProjectTaskItem/>
             </div>
             <div className="col-md-4">
               <div className="card text-center mb-2">
