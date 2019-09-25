@@ -3,13 +3,16 @@ import PropTypes from "prop-types";
 import {addactions} from "./Action";
 import classnames from "classnames";
 import axios from "axios";
+import {isinvalid,isinvalid_feedback} from "../../../mystyle.css";
+
 class AddProjectTask extends Component{
   constructor(){
     super();
     this.state={
       summary:"",
       acceptanceCriteria:"",
-      status:""
+      status:"",
+      errors:{}
     };
     this.onChange=this.onChange.bind(this);
     this.onSubmit=this.onSubmit.bind(this);
@@ -26,10 +29,27 @@ class AddProjectTask extends Component{
       status:this.state.status
     }
     console.log(newprojectTask);
-    axios.post("http://localhost:8080/api/board",newprojectTask);
+    //  axios.post("http://localhost:8080/api/board",newprojectTask);
+    axios
+     .post("http://localhost:8080/api/board",newprojectTask)
+     .then(
+      //  response=>console.log(response.data)
+       response => { console.log(response.data) },
+       error => {
+        //  error.response.data
+         this.setState({
+           errors:error.response.data
+         })
+      
+      }
+       );
+    
   }
+
     render(){
+      const {errors} = this.state;
       return(
+        
 <div>
   <div className="addProjectTask">
     <div className="container">
@@ -41,7 +61,11 @@ class AddProjectTask extends Component{
           <h4 className="display-4 text-center">Add /Update Project Task</h4>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
-              <input type="text" className="form-control form-control-lg" name="summary" placeholder="Project Task summary" value={this.state.summary} onChange={this.onChange}/>
+              {/* <input type="text" className={classnames("form-control form-control-lg",{"is-invalid":errors.summary})} name="summary" placeholder="Project Task summary" value={this.state.summary} onChange={this.onChange} /> */}
+            <input type="text" className={errors.summary?("form-control form-control-lg isinvalid"):("form-control form-control-lg")} name="summary" placeholder="Project Task summary" value={this.state.summary} onChange={this.onChange} /> 
+              {
+                errors.summary && (<div className="isinvalid_feedback">{ errors.summary}</div>)
+              } 
             </div>
             <div className="form-group">
               <textarea className="form-control form-control-lg" placeholder="Acceptance Criteria" name="acceptanceCriteria" value={this.state.acceptanceCriteria} onChange={this.onChange} />
