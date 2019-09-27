@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import axios from "axios";
 class ProjectTaskItem extends Component{
+
     render(){
+
       return(
           <div>
-                   <div className="card mb-1 bg-light">
+              <div className="card mb-1 bg-light">
                 <div className="card-header text-primary">
                   ID: projectSequence
                 </div>
@@ -13,7 +16,6 @@ class ProjectTaskItem extends Component{
                   <a href="" className="btn btn-primary">
                     View / Update
                   </a>
-
                   <button className="btn btn-danger ml-4">Delete</button>
                 </div>
               </div>
