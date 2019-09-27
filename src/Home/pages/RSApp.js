@@ -67,19 +67,9 @@ export default class RSApp extends Component {
           console.log(tasks[i].props.project_task.status);
         }
 
-      }
-    };
-    BoardAlgorithm(project_tasks);
-    return (
-      
-      <div className="container">
-        <Link to="/addProjectTask" className="btn btn-primary mb-3">
-          <i className="fa fa-plus-circle"> Create Project Task</i>
-        </Link>
-        <br />
-        {/* {this.state.project_tasks} */}
-        <hr />
-        <div className="container">
+        return (
+          <React.Fragment>
+                    <div className="container">
           <div className="row">
             <div className="col-md-4">
               <div className="card text-center mb-2">
@@ -88,13 +78,6 @@ export default class RSApp extends Component {
                 </div>
               </div>
               {todoItems}
-              {
-                // <!-- SAMPLE PROJECT TASK STARTS HERE -->
-              }{" "}
-         {/* <ProjectTaskItem/> */}
-              {
-                // <!-- SAMPLE PROJECT TASK ENDS HERE -->
-              }{" "}
             </div>
             <div className="col-md-4">
               <div className="card text-center mb-2">
@@ -103,11 +86,6 @@ export default class RSApp extends Component {
                 </div>
               </div>
               {inProgressItems}
-              {
-                //     <!-- SAMPLE PROJECT TASK STARTS HERE -->
-                // <!-- SAMPLE PROJECT TASK ENDS HERE -->
-              }
-               {/* <ProjectTaskItem/> */}
             </div>
             <div className="col-md-4">
               <div className="card text-center mb-2">
@@ -116,16 +94,24 @@ export default class RSApp extends Component {
                 </div>
               </div>
               {doneItems}
-              {
-                //     <!-- SAMPLE PROJECT TASK STARTS HERE -->
-                // <!-- SAMPLE PROJECT TASK ENDS HERE -->
-              }
             </div>
           </div>
         </div>
-        {
-          //<!-- Backlog ENDS HERE -->
-        }{" "}
+          </React.Fragment>
+        )
+
+      }
+    };
+    BoardContent=BoardAlgorithm(project_tasks);
+    return (
+      
+      <div className="container">
+        <Link to="/addProjectTask" className="btn btn-primary mb-3">
+          <i className="fa fa-plus-circle"> Create Project Task</i>
+        </Link>
+        <br />
+        <hr />
+      {BoardContent}
       </div>
  
     );
