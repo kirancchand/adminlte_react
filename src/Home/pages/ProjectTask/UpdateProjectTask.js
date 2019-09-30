@@ -5,7 +5,7 @@ class UpdateProjectTask extends Component{
     super(props);
     // console.dir(props);
     this.state = {
-      pt_id: props.location.id,
+      id: props.location.id,
       summary:"",
       acceptanceCriteria:"",
       status:"",
@@ -16,22 +16,10 @@ class UpdateProjectTask extends Component{
     // console.log(this.state.pt_id);
     
   }
-  onChange(e){
-    this.setState({[e.target.name]:e.target.value})
-  }
-
-  onSubmit(e){
-    e.preventDefault();
-    const newprojectTask={
-      summary:this.state.summary,
-      acceptanceCriteria:this.state.acceptanceCriteria,
-      status:this.state.status
-    }
-  }
   componentDidMount() {
     
     const res= axios
-    .get("http://localhost:8080/api/board/"+this.state.pt_id)
+    .get("http://localhost:8080/api/board/"+this.state.id)
     .then(
       response => { 
         this.setState({
@@ -44,6 +32,35 @@ class UpdateProjectTask extends Component{
       );
       
      
+  }
+  onChange(e){
+    this.setState({[e.target.name]:e.target.value})
+  }
+  onSubmit(e){
+    e.preventDefault();
+    const updateprojectTask={
+      id:this.state.id,
+      summary:this.state.summary,
+      acceptanceCriteria:this.state.acceptanceCriteria,
+      status:this.state.status
+    }
+  
+    //  axios.post("http://localhost:8080/api/board",newprojectTask);
+    axios
+     .put("http://localhost:8080/api/board/"+this.state.id,updateprojectTask)
+     .then(
+      //  response=>console.log(response.data)
+       response => { console.log(response.data) },
+       error => {
+         
+         this.setState({
+           errors:error.response.data
+         })
+         console.log(this.state.errors);
+      
+      }
+       );
+    
   }
 
 
